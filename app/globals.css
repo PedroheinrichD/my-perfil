@@ -1,0 +1,145 @@
+@import "tailwindcss";
+
+@theme {
+  /* Color system: warm ink base, single signal-amber accent. One theme, committed. */
+  --color-ink: #0b0a09;
+  --color-ink-raised: #141210;
+  --color-ink-elevated: #1b1815;
+  --color-line: rgba(243, 240, 233, 0.1);
+  --color-line-strong: rgba(243, 240, 233, 0.18);
+
+  --color-paper: #f3f0e9;
+  --color-paper-dim: #9c958a;
+  --color-paper-faint: #86807a; /* kept >=4.5:1 on --color-ink for small mono labels; verify before darkening */
+
+  --color-accent: #eb7635;
+  --color-accent-soft: #f5a468;
+  --color-accent-wash: rgba(235, 118, 53, 0.12);
+  --color-accent-ink: #140b04;
+
+  /* Type */
+  --font-display: var(--font-space-grotesk), "Space Grotesk", system-ui, sans-serif;
+  --font-body: var(--font-manrope), "Manrope", system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), "JetBrains Mono", ui-monospace, monospace;
+
+  /* Radius: near-sharp for structure, pill only for standalone tags */
+  --radius-sharp: 3px;
+  --radius-pill: 999px;
+
+  /* Container */
+  --container-page: 1400px;
+
+  --animate-marquee: marquee 32s linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--color-line);
+  }
+
+  html {
+    background: var(--color-ink);
+    color-scheme: dark;
+  }
+
+  body {
+    background: var(--color-ink);
+    color: var(--color-paper);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-accent-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  .container-page {
+    max-width: var(--container-page);
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  @media (min-width: 640px) {
+    .container-page {
+      padding-inline: 2rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container-page {
+      padding-inline: 3rem;
+    }
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Fixed atmospheric grain — never on scrolling containers (perf) */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Motion scaffolding: content is visible by default; JS opts elements into
+   hidden-until-revealed state only once GSAP has registered them. This keeps
+   the page fully readable with JS disabled or before hydration. */
+html.has-motion [data-reveal],
+html.has-motion [data-reveal-item],
+html.has-motion [data-motion-text] {
+  visibility: hidden;
+}
+
+.motion-line-mask {
+  display: block;
+  overflow: hidden;
+}
+
+.motion-word-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+}
+
+.motion-line,
+.motion-word {
+  display: inline-block;
+  will-change: transform, opacity, filter;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.has-motion [data-reveal],
+  html.has-motion [data-reveal-item],
+  html.has-motion [data-motion-text] {
+    visibility: visible;
+  }
+}
