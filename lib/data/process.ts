@@ -8,7 +8,7 @@ export const PROCESS_STEPS: ProcessStep[] = [
   {
     index: "01",
     title: "Entendimento",
-    description: "Entender o problema e o objetivo real do seu negócio antes de abrir o editor de código.",
+    description: "Entender o problema e o objetivo real do negócio antes de abrir o editor de código.",
   },
   {
     index: "02",
@@ -28,6 +28,6 @@ export const PROCESS_STEPS: ProcessStep[] = [
   {
     index: "05",
     title: "Publicação",
-    description: "Colocar o projeto no ar e entregar uma solução que o seu negócio já pode usar.",
+    description: "Colocar o projeto no ar e entregar uma solução que o negócio já pode usar.",
   },
 ];
