@@ -13,14 +13,13 @@ export function Hero() {
           <RevealHeading
             as="h1"
             trigger="load"
-            lines={["Transformo a necessidade do seu negócio", "em um site que funciona de verdade."]}
+            lines={["Desenvolvedor Web", "focado em React e Next.js."]}
             className="font-display text-4xl font-semibold leading-[1.08] tracking-tight text-paper text-balance md:text-6xl lg:text-7xl"
           />
 
           <Reveal preset="fade-up" delay={0.5} className="mt-7 max-w-md md:mt-8">
             <p className="text-base text-paper-dim md:text-lg">
-              Sites, sistemas e catálogos sob medida para negócios que ainda dependem só do Instagram ou do
-              WhatsApp.
+              Crio aplicações web completas, conectando interfaces, APIs e banco de dados.
             </p>
           </Reveal>
 
