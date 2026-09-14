@@ -9,13 +9,13 @@ export function CtaFinal() {
     <section id="contato" className="border-t border-line py-28 md:py-44">
       <div className="container-page flex flex-col items-center text-center">
         <RevealHeading
-          lines={["Seu próximo projeto", "pode começar agora."]}
+          lines={["Estou pronto para o próximo desafio."]}
           className="font-display text-4xl font-semibold leading-[1.08] tracking-tight text-paper text-balance md:text-7xl"
         />
 
         <Reveal preset="fade-up" delay={0.25} className="mt-7 max-w-md md:mt-8">
           <p className="text-base text-paper-dim md:text-lg">
-            Me conta o que o seu negócio precisa. Eu te mostro como isso vira um site ou sistema no ar.
+           Busco uma oportunidade de estágio ou desenvolvimento júnior para transformar conhecimento em experiência profissional e contribuir com projetos.
           </p>
         </Reveal>
 
